@@ -4,13 +4,30 @@
 <div class="container-fluid py-2">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <div>
-            <h3 class="fw-bold text-dark mb-1"><i class="bi bi-box-seam-fill text-primary me-2"></i> Data ATK</h3>
+            <h3 class="fw-bold text-dark mb-1">
+                <i class="bi bi-box-seam-fill text-primary me-2"></i> 
+                Data ATK
+            </h3>
             <p class="text-muted small mb-0">Kelola persediaan alat tulis kantor secara real-time.</p>
         </div>
-        <a href="{{ route('admin.atk.create') }}" class="btn btn-primary d-flex align-items-center gap-2 px-3 py-2 shadow-sm" style="border-radius: 8px;">
-            <i class="bi bi-plus-lg"></i> 
-            <span class="fw-medium">Tambah Barang</span>
-        </a>
+        
+        <div class="d-flex gap-2">
+            <!-- Tombol 1: Tambah Barang -->
+            <a href="{{ route('admin.atk.create') }}" 
+               class="btn btn-primary d-flex align-items-center gap-2 px-4 py-2 shadow-sm"
+               style="border-radius: 8px;">
+                <i class="bi bi-plus-lg"></i> 
+                <span class="fw-medium">Tambah Barang</span>
+            </a>
+
+            <!-- Tombol 2: Menu Transaksi -->
+            <a href="{{ route('admin.atk.transaksi') }}" 
+               class="btn btn-outline-primary d-flex align-items-center gap-2 px-4 py-2"
+               style="border-radius: 8px;">
+                <i class="bi bi-arrow-left-right"></i> 
+                <span class="fw-medium">Transaksi</span>
+            </a>
+        </div>
     </div>
 
     <div class="row mb-4">

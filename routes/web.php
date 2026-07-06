@@ -25,6 +25,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     // admin
+    // master atk
     Route::get('/admin', [AtkController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/admin/atk', [AtkController::class, 'atkIndex'])->name('admin.atk');
     Route::get('/admin/atk/create', [AtkController::class, 'atkCreate'])->name('admin.atk.create');
@@ -32,6 +33,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/atk/edit/{id}', [AtkController::class, 'atkEdit'])->name('admin.atk.edit');
     Route::put('/admin/atk/update/{id}', [AtkController::class, 'atkUpdate'])->name('admin.atk.update');
     Route::get('/admin/atk/delete/{id}', [AtkController::class, 'atkDestroy'])->name('admin.atk.destroy');
+
+    // transaksi atk
+    Route::get('/admin/atk/transaksi', [AtkController::class, 'atkTransaksi'])->name('admin.atk.transaksi');
 
     // user
     Route::get('/user', [AtkController::class, 'userDashboard'])->name('user.dashboard');

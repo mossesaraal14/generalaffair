@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AtkTransaksi;
 use App\Models\MasterATK;
+use App\Models\TransaksiATK;
 use Illuminate\Http\Request;
 
 class AtkController extends Controller
@@ -76,6 +78,11 @@ class AtkController extends Controller
         $data->delete();
 
         return redirect()->route('admin.atk')->with('success', 'Data ATK berhasil dihapus!');
+    }
+
+    public function atkTransaksi() {
+        $data = AtkTransaksi::all();
+        return view('admin.atk.transaksi', compact('data'));
     }
 
     // User
