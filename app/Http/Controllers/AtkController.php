@@ -85,6 +85,18 @@ class AtkController extends Controller
         return view('admin.atk.transaksi', compact('data'));
     }
 
+    public function atkTransaksiCreate() {
+        $items = MasterATK::all();
+
+        $month = date('m');
+
+        $year = date('Y');
+
+        $urutan = AtkTransaksi::max('id') ?? 0 + 1;
+
+        return view('admin.atk.transaksi-create', compact('items', 'month', 'year', 'urutan'));
+    }
+
     // User
     public function userDashboard() {
         return view('user.dashboard');

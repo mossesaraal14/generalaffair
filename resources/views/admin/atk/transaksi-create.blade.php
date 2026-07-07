@@ -20,49 +20,47 @@
                         @csrf
 
                         <div class="mb-4">
-                            <label for="nama_barang" class="form-label fw-semibold text-secondary small text-uppercase" style="letter-spacing: 0.5px;">Nama Barang</label>
-                            <input type="text" class="form-control py-2.5 @error('nama_barang') is-invalid @enderror" id="nama_barang" name="nama_barang" placeholder="Contoh: Kertas A4 PaperOne 80gr" required value="{{ old('nama_barang') }}" style="border-radius: 8px;">
-                            @error('nama_barang')
+                            <label for="nama_barang" class="form-label fw-semibold text-secondary small text-uppercase" style="letter-spacing: 0.5px;">ID Transaksi</label>
+                            <input type="text" class="form-control py-2.5 @error('id_transaksi') is-invalid @enderror" id="id_transaksi" name="id_transaksi" required value="ATK/{{ $month }}/{{ $year }}/{{ $urutan }}" style="border-radius: 8px;" readonly>
+                            @error('id_transaksi')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <div class="row g-4 mb-4">
                             <div class="col-md-6">
-                                <label for="satuan" class="form-label fw-semibold text-secondary small text-uppercase" style="letter-spacing: 0.5px;">Satuan Barang</label>
-                                <select class="form-select py-2.5 @error('satuan') is-invalid @enderror" id="satuan" name="satuan" required style="border-radius: 8px;">
+                                <label for="nama_barang" class="form-label fw-semibold text-secondary small text-uppercase" style="letter-spacing: 0.5px;">Nama Barang</label>
+                                <select class="form-select py-2.5 @error('nama_barang') is-invalid @enderror" id="nama_barang" name="nama_barang" required style="border-radius: 8px;">
                                     <option value="" selected disabled>Pilih Item...</option>
-                                    <option value="Rim">Rim</option>
-                                    <option value="Box">Box</option>
-                                    <option value="Pack">Pack</option>
-                                    <option value="Pcs">Pcs</option>
-                                    <option value="Lusin">Lusin</option>
+                                    @foreach ($items as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
+                                    @endforeach
                                 </select>
                                 @error('satuan')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-
                             <div class="col-md-6">
-                                <label for="harga" class="form-label fw-semibold text-secondary small text-uppercase" style="letter-spacing: 0.5px;">Harga Satuan</label>
-                                <div class="input-group" style="border-radius: 8px; overflow: hidden;">
-                                    <span class="input-group-text bg-light text-muted border-end-0">Rp</span>
-                                    <input type="number" class="form-control border-start-0 py-2.5 @error('harga') is-invalid @enderror" id="harga" name="harga" placeholder="0" min="0" required value="{{ old('harga') }}">
-                                </div>
-                                @error('harga')
-                                    <div class="text-danger small mt-1">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row g-4 mb-4">
-                            <div class="col-md-6">
-                                <label for="stok_awal" class="form-label fw-semibold text-secondary small text-uppercase" style="letter-spacing: 0.5px;">Stok Awal</label>
-                                <input type="number" class="form-control py-2.5 @error('stok_awal') is-invalid @enderror" id="stok_awal" name="stok_awal" placeholder="0" min="0" required value="{{ old('stok_awal') }}" style="border-radius: 8px;">
-                                <div class="form-text text-muted" style="font-size: 0.8rem;">*Stok sekarang otomatis menyamai stok awal saat pertama dibuat.</div>
-                                @error('stok_awal')
+                                <label for="tipe" class="form-label fw-semibold text-secondary small text-uppercase" style="letter-spacing: 0.5px;">Tipe</label>
+                                <select class="form-select py-2.5 @error('tipe') is-invalid @enderror" id="tipe" name="tipe" required style="border-radius: 8px;">
+                                    <option value="" selected disabled>Pilih Tipe...</option>
+                                    <option value="masuk">Masuk</option>
+                                    <option value="keluar">Keluar</option>
+                                </select>
+                                @error('tipe')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                            </div>
+
+                            <div class="row g-4 mb-4">
+                                <div class="col-md-6">
+                                    <label for="qty" class="form-label fw-semibold text-secondary small text-uppercase" style="letter-spacing: 0.5px;">Qty</label>
+                                    <input type="number" class="form-control py-2.5 @error('qty') is-invalid @enderror" id="qty" name="qty" placeholder="0" min="0" required value="{{ old('qty') }}" style="border-radius: 8px;">
+                                    <div class="form-text text-muted" style="font-size: 0.8rem;">*Stok sekarang otomatis menyamai stok awal saat pertama dibuat.</div>
+                                    @error('qty')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
 

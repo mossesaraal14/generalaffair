@@ -19,7 +19,7 @@
                 <span class="fw-medium">Kembali ke Master ATK</span>
             </a>
 
-            <a href="#" class="btn btn-primary d-flex align-items-center gap-2 px-4 py-2 shadow-sm"
+            <a href="{{ route('admin.atk.transaksi.create') }}" class="btn btn-primary d-flex align-items-center gap-2 px-4 py-2 shadow-sm"
                style="border-radius: 8px;">
                 <i class="bi bi-plus-lg"></i> 
                 <span class="fw-medium">Tambah Transaksi</span>
