@@ -6,6 +6,7 @@ use App\Models\AtkTransaksi;
 use App\Models\MasterATK;
 use App\Models\TransaksiATK;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AtkController extends Controller
 {
@@ -87,14 +88,50 @@ class AtkController extends Controller
 
     public function atkTransaksiCreate() {
         $items = MasterATK::all();
-
         $month = date('m');
-
         $year = date('Y');
-
-        $urutan = AtkTransaksi::max('id') ?? 0 + 1;
+        $urutan = (AtkTransaksi::max('id') ?? 0) + 1;
 
         return view('admin.atk.transaksi-create', compact('items', 'month', 'year', 'urutan'));
+    }
+
+
+    public function atkTransaksiStore(Request $request) {
+        $request->validate([
+            'id_barang'     => 'required|integer',
+            'id_transaksi'  => 'required|string',
+            'tipe'          => 'required|in:masuk,keluar',
+            'qty'           => 'required|integer|min:1',
+            'keterangan'    => 'nullable|string',
+        ]);
+
+        $masterBarang = MasterATK::findOrFail($request->id_barang);
+
+        if($request->tipe === 'masuk') {
+            $masterBarang->update([
+                'stok_sekarang' => $masterBarang->stok_sekarang + $request->qty,
+            ]);
+            // dd($masterBarang->stok_sekarang + $request->qty);
+        } else {
+            $masterBarang->update([
+                'stok_sekarang' => $masterBarang->stok_sekarang - $request->qty,
+            ]);
+            // dd($masterBarang->stok_sekarang - $request->qty);
+        }
+
+        AtkTransaksi::create([
+            'id_barang'     => $request->id_barang,
+            'id_user'       => Auth::id(),
+            'id_transaksi'  => $request->id_transaksi,
+            'tipe'          => $request->tipe,
+            'qty'           => $request->qty,
+            'harga_satuan'  => $masterBarang->harga,
+            'total_harga'   => $request->qty * $masterBarang->harga,
+            'keterangan'    => $request->keterangan,
+        ]);
+
+        return redirect()->route('admin.atk.transaksi')->with('success', 'Transaksi ATK berhasil ditambahkan!');
+        // dd(Auth::id());
     }
 
     // User

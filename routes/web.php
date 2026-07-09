@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     // transaksi atk
     Route::get('/admin/atk/transaksi', [AtkController::class, 'atkTransaksi'])->name('admin.atk.transaksi');
     Route::get('/admin/atk/transaksi/create', [AtkController::class, 'atkTransaksiCreate'])->name('admin.atk.transaksi.create');
+    Route::post('/admin/atk/transaksi/store', [AtkController::class, 'atkTransaksiStore'])->name('admin.atk.transaksi.store');
 
     // user
     Route::get('/user', [AtkController::class, 'userDashboard'])->name('user.dashboard');

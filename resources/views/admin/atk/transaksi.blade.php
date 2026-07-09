@@ -67,7 +67,7 @@
                         @foreach ($data as $item)
                         <tr>
                             <td class="ps-4 text-muted">{{ $loop->iteration }}</td>
-                            <td><span class="fw-semibold">{{ $item->no_transaksi }}</span></td>
+                            <td><span class="fw-semibold">{{ $item->id_transaksi }}</span></td>
                             <td>{{ $item->masterAtk->nama_barang ?? '-' }}</td>
                             <td>
                                 @if($item->tipe == 'masuk')
@@ -92,12 +92,17 @@
 
 <script>
     document.getElementById('searchInput').addEventListener('keyup', function() {
-        let filter = this.value.toUpperCase();
+        let filter = this.value.toUpperCase().trim();
         let rows = document.querySelectorAll('tbody tr');
-        
+
         rows.forEach(row => {
             let text = row.textContent.toUpperCase();
-            row.style.display = text.indexOf(filter) > -1 ? '' : 'none';
+            // Tampilkan jika ada kecocokan di salah satu kolom
+            if (text.indexOf(filter) > -1) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
         });
     });
 </script>

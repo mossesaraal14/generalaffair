@@ -16,7 +16,7 @@
         <div class="col-xl-8 col-lg-10">
             <div class="card border-0 shadow-sm" style="border-radius: 12px;">
                 <div class="card-body p-4">
-                    <form action="{{ route('admin.atk.store') }}" method="POST">
+                    <form action="{{ route('admin.atk.transaksi.store') }}" method="POST">
                         @csrf
 
                         <div class="mb-4">
@@ -29,8 +29,8 @@
 
                         <div class="row g-4 mb-4">
                             <div class="col-md-6">
-                                <label for="nama_barang" class="form-label fw-semibold text-secondary small text-uppercase" style="letter-spacing: 0.5px;">Nama Barang</label>
-                                <select class="form-select py-2.5 @error('nama_barang') is-invalid @enderror" id="nama_barang" name="nama_barang" required style="border-radius: 8px;">
+                                <label for="id_barang" class="form-label fw-semibold text-secondary small text-uppercase" style="letter-spacing: 0.5px;">Nama Barang</label>
+                                <select class="form-select py-2.5 @error('id_barang') is-invalid @enderror" id="id_barang" name="id_barang" required style="border-radius: 8px;">
                                     <option value="" selected disabled>Pilih Item...</option>
                                     @foreach ($items as $item)
                                     <option value="{{ $item->id }}">{{ $item->nama_barang }}</option>
@@ -77,7 +77,7 @@
                         <div class="d-flex justify-content-end gap-2">
                             <a href="{{ route('admin.atk') }}" class="btn btn-light border px-4 py-2" style="border-radius: 8px;">Batal</a>
                             <button type="submit" class="btn btn-primary px-4 py-2 shadow-sm" style="border-radius: 8px;">
-                                <i class="bi bi-cloud-arrow-up me-2"></i> Simpan Barang
+                                <i class="bi bi-cloud-arrow-up me-2"></i> Simpan
                             </button>
                         </div>
                     </form>
