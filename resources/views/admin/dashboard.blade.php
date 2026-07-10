@@ -1,65 +1,94 @@
 @extends('layouts.adminlte')
 
 @section('content')
-<div class="container-fluid py-2">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <div>
-            <h3 class="fw-bold text-dark mb-1">Selamat Datang Kembali, Admin</h3>
-            <p class="text-muted small mb-0">Berikut adalah ringkasan sistem IT Management Anda hari ini.</p>
-        </div>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Dashboard</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
     </div>
+    <!-- /.content-header -->
 
-    <div class="row g-4">
-        <div class="col-md-4">
-            <div class="card border-0 shadow-sm p-2" style="border-radius: 12px;">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <span class="text-muted text-uppercase fw-semibold tracking-wider" style="font-size: 0.75rem; letter-spacing: 0.5px;">IT Assets</span>
-                            <h2 class="fw-bold text-dark my-2">248</h2>
-                            <span class="text-success small fw-medium"><i class="bi bi-arrow-up-short"></i> Terdata aktif</span>
-                        </div>
-                        <div class="p-3 bg-primary bg-opacity-10 text-primary rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px;">
-                            <i class="bi bi-pc-display-horizontal fs-3"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>150</h3>
 
-        <div class="col-md-4">
-            <div class="card border-0 shadow-sm p-2" style="border-radius: 12px;">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <span class="text-muted text-uppercase fw-semibold tracking-wider" style="font-size: 0.75rem; letter-spacing: 0.5px;">IT Tickets</span>
-                            <h2 class="fw-bold text-dark my-2">12</h2>
-                            <span class="text-warning small fw-medium"><i class="bi bi-exclamation-circle"></i> Perlu tindakan</span>
-                        </div>
-                        <div class="p-3 bg-warning bg-opacity-10 text-warning rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px;">
-                            <i class="bi bi-ticket-perforated-fill fs-3"></i>
-                        </div>
-                    </div>
-                </div>
+                <p>New Orders</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-        </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-        <div class="col-md-4">
-            <div class="card border-0 shadow-sm p-2" style="border-radius: 12px;">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <span class="text-muted text-uppercase fw-semibold tracking-wider" style="font-size: 0.75rem; letter-spacing: 0.5px;">Stok ATK</span>
-                            <h2 class="fw-bold text-dark my-2">87</h2>
-                            <span class="text-secondary small fw-medium">Item tersedia</span>
-                        </div>
-                        <div class="p-3 bg-success bg-opacity-10 text-success rounded-3 d-flex align-items-center justify-content-center" style="width: 56px; height: 56px;">
-                            <i class="bi bi-box-seam-fill fs-3"></i>
-                        </div>
-                    </div>
-                </div>
+                <p>Bounce Rate</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>44</h3>
+
+                <p>User Registrations</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>65</h3>
+
+                <p>Unique Visitors</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
         </div>
-    </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
 </div>
 @endsection

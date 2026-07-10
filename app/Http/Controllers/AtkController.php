@@ -12,7 +12,8 @@ class AtkController extends Controller
 {
     // Admin
     public function dashboard() {
-        return view('admin.dashboard');
+        $name = Auth::user()->name;
+        return view('admin.dashboard', compact('name'));
     }
 
     public function atkIndex() {
