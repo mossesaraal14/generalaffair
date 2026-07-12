@@ -45,6 +45,9 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Information Technology</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
@@ -117,15 +120,15 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('admin.tickets') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Create</p>
+                  <p>Tickets</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('admin.tickets.get') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Update</p>
+                  <p>Get Ticket</p>
                 </a>
               </li>
             </ul>

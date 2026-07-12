@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AtkController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -38,6 +39,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/atk/transaksi', [AtkController::class, 'atkTransaksi'])->name('admin.atk.transaksi');
     Route::get('/admin/atk/transaksi/create', [AtkController::class, 'atkTransaksiCreate'])->name('admin.atk.transaksi.create');
     Route::post('/admin/atk/transaksi/store', [AtkController::class, 'atkTransaksiStore'])->name('admin.atk.transaksi.store');
+
+    // tickets
+    Route::get('/admin/tickets', [TicketController::class, 'index'])->name('admin.tickets');
+
+    // get ticket
+    Route::get('/admin/getticket', [TicketController::class, 'getTicketIndex'])->name('admin.tickets.get');
 
     // user
     Route::get('/user', [AtkController::class, 'userDashboard'])->name('user.dashboard');
