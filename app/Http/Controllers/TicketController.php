@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GetTicket;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,10 +44,44 @@ class TicketController extends Controller
         return redirect()->route('admin.tickets')->with('success', 'Data ATK berhasil ditambahkan!');
     }
 
+    // get ticket
     public function getTicketIndex() {
-        $data = Ticket::all();
+        $data = GetTicket::all();
 
-        return view('admin.tickets.index', compact('data'));
+        return view('admin.tickets.get-ticket', compact('data'));
     }
 
+    public function getTicketCreate() {
+        $ticket_id = Ticket::where('status', 'open')->get();
+
+        return view('admin.tickets.get-create', compact('ticket_id'));
+    }
+
+    public function getTicketStore(Request $request) {
+        $request->validate([
+            'ticket_id' => 'required|string|max:255',
+            'description' => 'string|nullable',
+            'status' => 'required|string',
+        ]);
+
+        GetTicket::create([
+            'ticket_id' => $request->ticket_id,
+            'description' => $request->description,
+        ]);
+
+        $ticket = Ticket::findOrFail($request->ticket_id);
+        // dd($ticket->description);
+
+        $ticket->update([
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('admin.tickets.get')->with('success', 'Data ATK berhasil ditambahkan!');
+    }
+
+    // public function getTicketEdit($id) {
+    //     $get = GetTicket::where('status', 'open')->get();
+
+    //     return view('admin.tickets.get-create', compact('ticket_id'));
+    // }
 }

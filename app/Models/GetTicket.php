@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class GetTicket extends Model
 {
-    protected $table = 'tb_getTicket';
+    protected $table = 'tb_getticket';
     protected $fillable = ['ticket_id', 'description'];
 
-    public function getTicket() {
-        $this->belongsTo(Ticket::class);
+    public function tickets() {
+        return $this->belongsTo(Ticket::class, 'ticket_id');
     }
 }

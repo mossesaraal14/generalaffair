@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Ticket extends Model
 {
     protected $table = 'tb_tickets';
-    protected $fillable = ['ticket_id', 'user_id', 'department', 'description', 'category'];
+    protected $fillable = ['ticket_id', 'user_id', 'department', 'description', 'category', 'status'];
 
     public function user() {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 }

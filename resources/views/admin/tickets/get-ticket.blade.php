@@ -1,3 +1,6 @@
+@php
+    Use App\Models\User;
+@endphp
 @extends('layouts.adminlte')
 
 @section('content')
@@ -27,7 +30,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">IT Tickets</h3>
+                <a href="{{ route('admin.tickets.get.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -40,17 +43,31 @@
                     <th>Description</th>
                     <th>Category</th>
                     <th>Status</th>
+                    <th>Problem Solving</th>
+                    <th>Update</th>
                   </tr>
                   </thead>
                   <tbody>
-                  @foreach ($data as $ticket)
+                  @foreach ($data as $get)
                   <tr>
-                    <td>{{ $ticket->ticket_id }}</td>
-                    <td>{{ $ticket->user_id }}</td>
-                    <td>{{ $ticket->department }}</td>
-                    <td>{{ $ticket->description }}</td>
-                    <td>{{ $ticket->category }}</td>
-                    <td>{{ $ticket->status }}</td>
+                    <td>{{ $get->tickets->ticket_id }}</td>
+                    <td>{{ $get->tickets->user->name }}</td>
+                    <td>{{ $get->tickets->department }}</td>
+                    <td>{{ $get->tickets->description }}</td>
+                    <td>{{ ucfirst($get->tickets->category) }}</td>
+                    <td>
+                        @if ($get->tickets->status == 'open')
+                            <span class="badge bg-primary">Open</span>
+                        @elseif ($get->tickets->status == 'progress')
+                            <span class="badge bg-warning">In Progress</span>
+                        @elseif ($get->tickets->status == 'closed')
+                            <span class="badge bg-success">Closed</span>
+                        @else
+                            <span class="badge bg-secondary">{{ ucfirst($get->tickets->status) }}</span>
+                        @endif
+                    </td>
+                    <td>{{ $get->description ?? '-' }}</td>
+                    <td><a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></a></td>
                   </tr>
                   @endforeach
                   </tbody>
@@ -62,6 +79,8 @@
                     <th>Description</th>
                     <th>Category</th>
                     <th>Status</th>
+                    <th>Problem Solving</th>
+                    <th>Update</th>
                   </tr>
                   </tfoot>
                 </table>

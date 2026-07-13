@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tb_getticket', function (Blueprint $table) {
-            $table->id();
-
-            $table->foreignId('ticket_id')->constrained('tb_tickets')->onDelete('cascade');
-            $table->text('description');
-
-            $table->timestamps();
+        Schema::table('tb_getticket', function (Blueprint $table) {
+            $table->text('description')->nullable()->change();
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('get_tickets');
+        Schema::table('tb_getticket', function (Blueprint $table) {
+            $table->text('description')->nullable(false)->change();
+        });
     }
 };

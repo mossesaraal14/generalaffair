@@ -30,7 +30,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <a href="{{ route('admin.tickets.create') }}" class="btn btn-success">Create</a>
+                <a href="{{ route('admin.tickets.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
