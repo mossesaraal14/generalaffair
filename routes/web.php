@@ -42,6 +42,8 @@ Route::middleware('auth')->group(function () {
 
     // tickets
     Route::get('/admin/tickets', [TicketController::class, 'index'])->name('admin.tickets');
+    Route::get('/admin/tickets/create', [TicketController::class, 'ticketCreate'])->name('admin.tickets.create');
+    Route::post('/admin/tickets/store', [TicketController::class, 'ticketStore'])->name('admin.tickets.store');
 
     // get ticket
     Route::get('/admin/getticket', [TicketController::class, 'getTicketIndex'])->name('admin.tickets.get');

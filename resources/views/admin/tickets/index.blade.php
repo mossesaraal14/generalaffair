@@ -1,3 +1,6 @@
+@php
+    Use App\Models\User;
+@endphp
 @extends('layouts.adminlte')
 
 @section('content')
@@ -27,7 +30,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">IT Tickets</h3>
+                <a href="{{ route('admin.tickets.create') }}" class="btn btn-success">Create</a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -46,11 +49,21 @@
                   @foreach ($data as $ticket)
                   <tr>
                     <td>{{ $ticket->ticket_id }}</td>
-                    <td>{{ $ticket->user_id }}</td>
+                    <td>{{ User::findOrFail($ticket->user_id)->name }}</td>
                     <td>{{ $ticket->department }}</td>
-                    <td>{{ $ticket->description }}</td>
-                    <td>{{ $ticket->category }}</td>
-                    <td>{{ $ticket->status }}</td>
+                    <td>{{ ucfirst($ticket->description) }}</td>
+                    <td>{{ ucfirst($ticket->category) }}</td>
+                    <td>
+                        @if ($ticket->status == 'open')
+                            <span class="badge bg-primary">Open</span>
+                        @elseif ($ticket->status == 'progress')
+                            <span class="badge bg-warning">In Progress</span>
+                        @elseif ($ticket->status == 'closed')
+                            <span class="badge bg-success">Closed</span>
+                        @else
+                            <span class="badge bg-secondary">{{ ucfirst($ticket->status) }}</span>
+                        @endif
+                    </td>
                   </tr>
                   @endforeach
                   </tbody>
