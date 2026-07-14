@@ -1,4 +1,4 @@
-@extends('layouts.adminlte')
+@extends('layouts.userlte')
 @section('content')
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -11,8 +11,8 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-              <li class="breadcrumb-item"><a href="{{ route('admin.tickets') }}">Tickets</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('user.tickets') }}">Tickets</a></li>
               <li class="breadcrumb-item active">Ticket Form</li>
             </ol>
           </div>
@@ -39,7 +39,7 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <form action="{{ route('admin.tickets.store') }}" method="post">
+            <form action="{{ route('user.tickets.store') }}" method="post">
                 @csrf
                 <div class="row">
                   <div class="col-md-6">

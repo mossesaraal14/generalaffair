@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\GetTicket;
 use App\Models\Ticket;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,8 +22,9 @@ class TicketController extends Controller
         $month = date('m');
         $year = date('Y');
         $urutan = (Ticket::max('id') ?? 0) + 1;
+        $department = User::where('id', Auth::user()->id)->first()->department;
 
-        return view('admin.tickets.create', compact('month', 'year', 'urutan'));
+        return view('admin.tickets.create', compact('month', 'year', 'urutan', 'department'));
     }
 
     public function ticketStore(Request $request) {

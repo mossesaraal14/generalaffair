@@ -3,6 +3,7 @@
 use App\Http\Controllers\AtkController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\UserTicketController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +55,9 @@ Route::middleware('auth')->group(function () {
 
     // user
     Route::get('/user', [AtkController::class, 'userDashboard'])->name('user.dashboard');
+    Route::get('/user/tickets', [UserTicketController::class, 'index'])->name('user.tickets');
+    Route::get('/user/tickets/create', [UserTicketController::class, 'ticketCreate'])->name('user.tickets.create');
+    Route::post('/user/tickets/store', [UserTicketController::class, 'ticketStore'])->name('user.tickets.store');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
