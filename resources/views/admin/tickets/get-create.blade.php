@@ -7,12 +7,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Advanced Form</h1>
+            <h1>Get Ticket Form</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Advanced Form</li>
+              <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('admin.tickets.get') }}">Get Ticket</a></li>
+              <li class="breadcrumb-item active">Create Get</li>
             </ol>
           </div>
         </div>
@@ -22,8 +23,6 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-
-
         <!-- FORM CREATE -->
         <div class="card card-default">
           <div class="card-header">
