@@ -40,27 +40,35 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <form action="{{ route('admin.tickets.get.store') }}" method="post">
+            <form action="{{ route('admin.tickets.get.update', $get->tickets->id) }}" method="post">
                 @csrf
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                         <label for="ticket_id">Ticket ID</label>
-                        <select class="form-control select2bs4" style="width: 100%;" name="ticket_id">
-                          <option selected="selected">Select Ticket</option>
-                          @foreach ($ticket_id as $ticket)
-                          <option value="{{ $ticket->id }}">{{ $ticket->ticket_id }}</option>
-                          @endforeach
-                        </select>
+                        <input type="text" class="form-control" id="ticket_id" name="ticket_id" readonly value="{{ $get->tickets->ticket_id }}">
                     </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" id="description" readonly value="{{ $get->tickets->description }}">
+                    </div>
+                    @error('tiket_id')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <div class="form-group">
                         <label for="ticket_id">Status</label>
                         <select class="form-control select2bs4" style="width: 100%;" name="status">
-                          <option value="progress" selected="selected">progress</option>
-                          <option value="closed">closed</option>
+                          <option value="progress" {{ $get->tickets->status == 'progress' ? 'selected' : '' }}>
+                              Progress
+                          </option>
+                          <option value="closed" {{ $get->tickets->status == 'closed' ? 'selected' : '' }}>
+                              Closed
+                          </option>
                         </select>
                     </div>
-                    @error('ticket_id')
+                    @error('status')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
@@ -68,7 +76,7 @@
                     <!-- /.form-group -->
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea class="form-control" rows="3" placeholder="Enter ..." name="description"></textarea>
+                        <textarea class="form-control" rows="3" placeholder="Enter ..." name="description" required>{{ $get->description }}</textarea>
                     </div>
                     @error('description')
                         <div class="invalid-feedback">

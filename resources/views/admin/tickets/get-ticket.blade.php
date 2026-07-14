@@ -67,7 +67,11 @@
                         @endif
                     </td>
                     <td>{{ $get->description ?? '-' }}</td>
-                    <td><a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></a></td>
+                    @if ($get->tickets->status === 'closed')
+                    <td><a href="{{ route('admin.tickets.get.edit', $get->id) }}" class="btn btn-success"><i class="fas fa-check"></i></a></td>
+                    @else
+                    <td><a href="{{ route('admin.tickets.get.edit', $get->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a></td>
+                    @endif
                   </tr>
                   @endforeach
                   </tbody>

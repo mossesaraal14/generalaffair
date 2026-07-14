@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/getticket/create', [TicketController::class, 'getTicketCreate'])->name('admin.tickets.get.create');
     Route::post('/admin/getticket/store', [TicketController::class, 'getTicketStore'])->name('admin.tickets.get.store');
     Route::get('/admin/getticket/edit/{id}', [TicketController::class, 'getTicketEdit'])->name('admin.tickets.get.edit');
+    Route::post('/admin/getticket/update/{id}', [TicketController::class, 'getTicketUpdate'])->name('admin.tickets.get.update');
 
     // user
     Route::get('/user', [AtkController::class, 'userDashboard'])->name('user.dashboard');

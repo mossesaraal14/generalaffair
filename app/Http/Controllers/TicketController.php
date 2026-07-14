@@ -27,10 +27,10 @@ class TicketController extends Controller
 
     public function ticketStore(Request $request) {
         $request->validate([
-            'ticket_id'   => 'required|string|max:255',
-            'department'        => 'required|string|max:50',
-            'category'        => 'required|string|max:50',
-            'description'    => 'required|string',
+            'ticket_id' => 'required|string|max:255',
+            'department' => 'required|string|max:50',
+            'category' => 'required|string|max:50',
+            'description' => 'required|string',
         ]);
 
         Ticket::create([
@@ -79,9 +79,32 @@ class TicketController extends Controller
         return redirect()->route('admin.tickets.get')->with('success', 'Data ATK berhasil ditambahkan!');
     }
 
-    // public function getTicketEdit($id) {
-    //     $get = GetTicket::where('status', 'open')->get();
+    public function getTicketEdit($id) {
+        $get = GetTicket::findOrFail($id);
 
-    //     return view('admin.tickets.get-create', compact('ticket_id'));
-    // }
+        return view('admin.tickets.get-edit', compact('get'));
+    }
+
+    public function getTicketUpdate(Request $request, $id) {
+        $request->validate([
+            'ticket_id' => 'required|string|max:255',
+            'description' => 'string|required',
+            'status' => 'required|string',
+        ]);
+
+        $ticket = Ticket::findOrFail($id);
+        $get = GetTicket::where('ticket_id', $ticket->id)->first();
+
+        $ticket->update([
+            'status' => $request->status,
+        ]);
+
+        $get->update([
+            'description' => $request->description,
+        ]);
+
+        // dd($ticket->id);
+
+        return redirect()->route('admin.tickets.get')->with('success', 'Data ATK berhasil ditambahkan!');
+    }
 }
