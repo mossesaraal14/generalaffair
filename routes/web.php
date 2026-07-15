@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/atk/transaksi/store', [AtkController::class, 'atkTransaksiStore'])->name('admin.atk.transaksi.store');
 
     // tickets
-    Route::get('/admin/tickets', [TicketController::class, 'index'])->name('admin.tickets');
+    Route::get('/admin/tickets/', [TicketController::class, 'index'])->name('admin.tickets');
     Route::get('/admin/tickets/create', [TicketController::class, 'ticketCreate'])->name('admin.tickets.create');
     Route::post('/admin/tickets/store', [TicketController::class, 'ticketStore'])->name('admin.tickets.store');
 

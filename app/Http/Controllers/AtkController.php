@@ -13,12 +13,13 @@ class AtkController extends Controller
 {
     // Admin
     public function dashboard() {
-        $name = Auth::user()->name;
         $totalTickets = Ticket::count();
         $unfinishedTickets = Ticket::whereIn('status', ['open', 'progress'])->count();
         $finishedTickets = Ticket::where('status', 'closed')->count();
 
-        return view('admin.dashboard', compact('name', 'totalTickets', 'unfinishedTickets', 'finishedTickets'));
+        $resolutionRate = $totalTickets > 0 ? round(($finishedTickets / $totalTickets) * 100, 1) : 0;
+
+        return view('admin.dashboard', compact('totalTickets', 'unfinishedTickets', 'finishedTickets', 'resolutionRate'));
     }
 
     public function atkIndex() {
@@ -142,6 +143,13 @@ class AtkController extends Controller
 
     // User
     public function userDashboard() {
-        return view('user.dashboard');
+        $user_id = Auth::user()->id;
+        $totalTickets = Ticket::where('user_id', $user_id)->count();
+        $unfinishedTickets = Ticket::where('user_id', $user_id)->whereIn('status', ['open', 'progress'])->count();
+        $finishedTickets = Ticket::where('user_id', $user_id)->where('status', 'closed')->count();
+
+        $resolutionRate = $totalTickets > 0 ? round(($finishedTickets / $totalTickets) * 100, 1) : 0;
+
+        return view('user.dashboard', compact('totalTickets', 'unfinishedTickets', 'finishedTickets', 'resolutionRate'));
     }
 }
