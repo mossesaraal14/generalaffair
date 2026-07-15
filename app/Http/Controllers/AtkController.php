@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AtkTransaksi;
 use App\Models\MasterATK;
+use App\Models\Ticket;
 use App\Models\TransaksiATK;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,11 @@ class AtkController extends Controller
     // Admin
     public function dashboard() {
         $name = Auth::user()->name;
-        return view('admin.dashboard', compact('name'));
+        $totalTickets = Ticket::count();
+        $unfinishedTickets = Ticket::whereIn('status', ['open', 'progress'])->count();
+        $finishedTickets = Ticket::where('status', 'closed')->count();
+
+        return view('admin.dashboard', compact('name', 'totalTickets', 'unfinishedTickets', 'finishedTickets'));
     }
 
     public function atkIndex() {
