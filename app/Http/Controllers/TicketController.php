@@ -43,7 +43,14 @@ class TicketController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->route('admin.tickets')->with('success', 'Data ATK berhasil ditambahkan!');
+        return redirect()->route('admin.tickets')->with('success', 'Ticket has been created successfully!');
+    }
+
+    public function ticketDestroy($id) {
+        $data = Ticket::findOrFail($id);
+        $data->delete();
+
+        return redirect()->route('admin.tickets')->with('success', 'Ticket has been deleted successfully!');
     }
 
     // get ticket
@@ -78,7 +85,7 @@ class TicketController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect()->route('admin.tickets.get')->with('success', 'Data ATK berhasil ditambahkan!');
+        return redirect()->route('admin.tickets.get')->with('success', 'Ticket has been updated!');
     }
 
     public function getTicketEdit($id) {
@@ -107,6 +114,6 @@ class TicketController extends Controller
 
         // dd($ticket->id);
 
-        return redirect()->route('admin.tickets.get')->with('success', 'Data ATK berhasil ditambahkan!');
+        return redirect()->route('admin.tickets.get')->with('success', 'Ticket has been updated!');
     }
 }

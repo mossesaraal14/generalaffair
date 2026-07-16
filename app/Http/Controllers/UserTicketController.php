@@ -42,6 +42,13 @@ class UserTicketController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->route('user.tickets')->with('success', 'Data ATK berhasil ditambahkan!');
+        return redirect()->route('user.tickets')->with('success', 'Ticket has been created successfully!');
+    }
+
+    public function ticketDestroy($id) {
+        $data = Ticket::findOrFail($id);
+        $data->delete();
+
+        return redirect()->route('user.tickets')->with('success', 'Ticket has been deleted successfully!');
     }
 }

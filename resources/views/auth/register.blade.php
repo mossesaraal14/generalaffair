@@ -53,6 +53,26 @@
 
             <x-input-error :messages="$errors->get('role')" class="mt-2" />
         </div>
+        
+        <!-- Role Selection -->
+        <div class="mt-4">
+            <x-input-label for="department" :value="__('Role')" />
+
+            <select id="department" name="department" 
+                    class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
+                    required>
+                <option value="">Pilih Department</option>
+                <option value="HRGA">HRGA</option>
+                <option value="FAT">FAT</option>
+                <option value="Sales">Sales</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Controller">Controller</option>
+                <option value="Pabrik">Pabrik</option>
+                <option value="Gudang">Gudang</option>
+            </select>
+
+            <x-input-error :messages="$errors->get('department')" class="mt-2" />
+        </div>
 
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">

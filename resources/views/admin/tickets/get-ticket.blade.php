@@ -30,7 +30,7 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <a href="{{ route('admin.tickets.get.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                <a href="{{ route('admin.tickets.get.create') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i></a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -43,7 +43,7 @@
                     <th>Description</th>
                     <th>Category</th>
                     <th>Status</th>
-                    <th>Problem Solving</th>
+                    <th>Resolution</th>
                     <th>Update</th>
                   </tr>
                   </thead>
@@ -68,9 +68,9 @@
                     </td>
                     <td>{{ $get->description ?? '-' }}</td>
                     @if ($get->tickets->status === 'closed')
-                    <td><a href="{{ route('admin.tickets.get.edit', $get->id) }}" class="btn btn-success"><i class="fas fa-check"></i></a></td>
+                    <td><a href="{{ route('admin.tickets.get.edit', $get->id) }}" class="btn btn-success btn-sm"><i class="fas fa-check"></i></a></td>
                     @else
-                    <td><a href="{{ route('admin.tickets.get.edit', $get->id) }}" class="btn btn-warning"><i class="fas fa-edit"></i></a></td>
+                    <td><a href="{{ route('admin.tickets.get.edit', $get->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a></td>
                     @endif
                   </tr>
                   @endforeach

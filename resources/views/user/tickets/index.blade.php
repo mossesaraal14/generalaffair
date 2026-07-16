@@ -30,10 +30,20 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <a href="{{ route('user.tickets.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+                <a href="{{ route('user.tickets.create') }}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i></a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
+                @if(session('success'))
+                    <div class="alert alert-success alert-dismissible fade show">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                        <i class="icon fas fa-check"></i>
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
@@ -43,6 +53,7 @@
                     <th>Description</th>
                     <th>Category</th>
                     <th>Status</th>
+                    <th>Action</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -64,6 +75,14 @@
                             <span class="badge bg-secondary">{{ ucfirst($ticket->status) }}</span>
                         @endif
                     </td>
+                    <td>
+                      <a href="#" class="btn btn-warning btn-sm">
+                        <i class="fas fa-edit"></i>
+                      </a>
+                      <a href="{{ route('user.tickets.destroy', $ticket->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('are you sure to delete this item?')">
+                        <i class="fas fa-trash"></i>
+                      </a>
+                    </td>
                   </tr>
                   @endforeach
                   </tbody>
@@ -75,6 +94,7 @@
                     <th>Description</th>
                     <th>Category</th>
                     <th>Status</th>
+                    <th>Action</th>
                   </tr>
                   </tfoot>
                 </table>
