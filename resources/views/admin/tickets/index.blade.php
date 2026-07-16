@@ -51,7 +51,7 @@
                     <th>User</th>
                     <th>Department</th>
                     <th>Description</th>
-                    <th>Category</th>
+                    <th>Created At</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
@@ -63,7 +63,7 @@
                     <td>{{ User::findOrFail($ticket->user_id)->name }}</td>
                     <td>{{ $ticket->department }}</td>
                     <td>{{ ucfirst($ticket->description) }}</td>
-                    <td>{{ ucfirst($ticket->category) }}</td>
+                    <td>{{ ucfirst($ticket->created_at) }}</td>
                     <td>
                         @if ($ticket->status == 'open')
                             <span class="badge bg-primary">Open</span>
@@ -75,11 +75,11 @@
                             <span class="badge bg-secondary">{{ ucfirst($ticket->status) }}</span>
                         @endif
                     </td>
-                    <td>
-                      <a href="#" class="btn btn-warning btn-sm">
+                    <td class="text-center">
+                      {{-- <a href="#" class="btn btn-warning btn-sm">
                         <i class="fas fa-edit"></i>
-                      </a>
-                      <a href="{{ route('admin.tickets.destroy', $ticket->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('are you sure to delete this item?')">
+                      </a> --}}
+                      <a href="{{ route('admin.tickets.destroy', $ticket->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('are you sure to delete this item?')" style="padding: 2px 6px; font-size: 12px;">
                         <i class="fas fa-trash"></i>
                       </a>
                     </td>
@@ -92,7 +92,7 @@
                     <th>User</th>
                     <th>Department</th>
                     <th>Description</th>
-                    <th>Category</th>
+                    <th>Created At</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>

@@ -68,9 +68,9 @@
                     </td>
                     <td>{{ $get->description ?? '-' }}</td>
                     @if ($get->tickets->status === 'closed')
-                    <td><a href="{{ route('admin.tickets.get.edit', $get->id) }}" class="btn btn-success btn-sm"><i class="fas fa-check"></i></a></td>
+                    <td class="text-center"><a href="{{ route('admin.tickets.get.edit', $get->id) }}" class="btn btn-success btn-sm" style="padding: 2px 6px; font-size: 12px;"><i class="fas fa-check"></i></a></td>
                     @else
-                    <td><a href="{{ route('admin.tickets.get.edit', $get->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a></td>
+                    <td class="text-center"><a href="{{ route('admin.tickets.get.edit', $get->id) }}" class="btn btn-warning btn-sm" style="padding: 2px 6px; font-size: 12px;"><i class="fas fa-edit"></i></a></td>
                     @endif
                   </tr>
                   @endforeach

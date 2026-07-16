@@ -62,6 +62,7 @@
                     class="block mt-1 w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                     required>
                 <option value="">Pilih Department</option>
+                <option value="Direksi">Direksi</option>
                 <option value="HRGA">HRGA</option>
                 <option value="FAT">FAT</option>
                 <option value="Sales">Sales</option>
