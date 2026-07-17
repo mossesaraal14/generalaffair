@@ -12,4 +12,8 @@ class Ticket extends Model
     public function user() {
         return $this->belongsTo(User::class);
     }
+
+    public function getTicket() {
+        return $this->hasOne(GetTicket::class, 'ticket_id', 'id');
+    }
 }

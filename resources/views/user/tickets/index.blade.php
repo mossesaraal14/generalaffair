@@ -53,6 +53,7 @@
                     <th>Description</th>
                     <th>Created At</th>
                     <th>Status</th>
+                    <th>Note</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -75,6 +76,7 @@
                             <span class="badge bg-secondary">{{ ucfirst($ticket->status) }}</span>
                         @endif
                     </td>
+                    <td>{{ $ticket->getTicket ? ucfirst($ticket->getTicket->description) : '-' }}</td>
                     <td class="text-center">
                       {{-- <a href="#" class="btn btn-warning btn-sm">
                         <i class="fas fa-edit"></i>
@@ -94,6 +96,7 @@
                     <th>Description</th>
                     <th>Created At</th>
                     <th>Status</th>
+                    <th>Note</th>
                     <th>Action</th>
                   </tr>
                   </tfoot>
