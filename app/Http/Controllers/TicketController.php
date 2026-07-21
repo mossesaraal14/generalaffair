@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\GetTicket;
 use App\Models\Ticket;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class TicketController extends Controller
 {
@@ -32,7 +34,7 @@ class TicketController extends Controller
             'ticket_id' => 'required|string|max:255',
             'department' => 'required|string|max:50',
             'category' => 'required|string|max:50',
-            'description' => 'required|string',
+            'description' => 'required|string|max:255',
         ]);
 
         Ticket::create([
@@ -42,6 +44,20 @@ class TicketController extends Controller
             'category' => $request->category,
             'description' => $request->description,
         ]);
+
+        $email = Auth::user()->email;
+        $name = Auth::user()->name;
+
+        Mail::send('emails.ticket', [
+            'name' => $name,
+            'ticket_id' => $request->ticket_id,
+            'description' => $request->description,
+            'department' => $request->department,
+            'status' => 'Open',
+            'tanggal' => Carbon::now()->format('d/m/y'),
+        ], function($message) use ($email) {
+            $message->to($email)->subject('Ticket Berhasil Dibuat');
+        });
 
         return redirect()->route('admin.tickets')->with('success', 'Ticket has been created successfully!');
     }
@@ -103,7 +119,7 @@ class TicketController extends Controller
 
         $ticket = Ticket::findOrFail($id);
         $get = GetTicket::where('ticket_id', $ticket->id)->first();
-
+        
         $ticket->update([
             'status' => $request->status,
         ]);
@@ -112,7 +128,18 @@ class TicketController extends Controller
             'description' => $request->description,
         ]);
 
-        // dd($ticket->id);
+        $email = Ticket::with('user')->findOrFail($id);
+
+        Mail::send('emails.get', [
+            'name' => $email->user->name,
+            'ticket_id' => $request->ticket_id,
+            'description' => $ticket->description,
+            'department' => $email->user->department,
+            'status' => $request->status,
+            'tanggal' => Carbon::now()->format('d/m/y'),
+        ], function($message) use ($email) {
+            $message->to($email->user->email)->subject('Ticket Telah Diperbarui');
+        });
 
         return redirect()->route('admin.tickets.get')->with('success', 'Ticket has been updated!');
     }

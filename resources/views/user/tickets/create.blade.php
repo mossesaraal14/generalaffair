@@ -68,7 +68,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Category</label>
-                      <select class="form-control select2bs4" style="width: 100%;" name="category">
+                      <select class="form-control select2bs4" style="width: 100%;" name="category" required>
                         <option selected="selected">Select Category</option>
                         <option value="Hardware">Hardware</option>
                         <option value="Software">Software</option>
@@ -83,7 +83,7 @@
                     <!-- /.form-group -->
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea class="form-control" rows="3" placeholder="Enter ..." name="description"></textarea>
+                        <textarea class="form-control" rows="3" placeholder="Enter ..." name="description" reqiured></textarea>
                     </div>
                     @error('description')
                         <div class="invalid-feedback">

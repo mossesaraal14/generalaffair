@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Ticket;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class UserTicketController extends Controller
 {
@@ -41,6 +43,22 @@ class UserTicketController extends Controller
             'category' => $request->category,
             'description' => $request->description,
         ]);
+
+        $email = Auth::user()->email;
+        $name = Auth::user()->name;
+
+        // dd($email);
+
+        Mail::send('emails.ticket', [
+            'name' => $name,
+            'ticket_id' => $request->ticket_id,
+            'description' => $request->description,
+            'department' => $request->department,
+            'status' => 'Open',
+            'tanggal' => Carbon::now()->format('d/m/y'),
+        ], function($message) use ($email) {
+            $message->to($email)->subject('Ticket Berhasil Dibuat');
+        });
 
         return redirect()->route('user.tickets')->with('success', 'Ticket has been created successfully!');
     }

@@ -12,4 +12,8 @@ class GetTicket extends Model
     public function tickets() {
         return $this->belongsTo(Ticket::class, 'ticket_id');
     }
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
 }
