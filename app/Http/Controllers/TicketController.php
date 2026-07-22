@@ -84,13 +84,13 @@ class TicketController extends Controller
         return view('admin.tickets.get-ticket', compact('data'));
     }
 
-    public function getTicketCreate() {
-        $ticket_id = Ticket::where('status', 'open')->get();
+    public function getTicketCreate($id) {
+        $ticket = Ticket::where('id', $id)->first();
 
-        return view('admin.tickets.get-create', compact('ticket_id'));
+        return view('admin.tickets.get-create', compact('ticket'));
     }
 
-    public function getTicketStore(Request $request) {
+    public function getTicketStore(Request $request, $id) {
         $request->validate([
             'ticket_id' => 'required|string|max:255',
             'description' => 'string|nullable',
@@ -109,34 +109,8 @@ class TicketController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect()->route('admin.tickets.get')->with('success', 'Ticket has been updated!');
-    }
-
-    public function getTicketEdit($id) {
-        $get = GetTicket::findOrFail($id);
-
-        return view('admin.tickets.get-edit', compact('get'));
-    }
-
-    public function getTicketUpdate(Request $request, $id) {
-        $request->validate([
-            'ticket_id' => 'required|string|max:255',
-            'description' => 'string|required',
-            'status' => 'required|string',
-        ]);
-
-        $ticket = Ticket::findOrFail($id);
-        $get = GetTicket::where('ticket_id', $ticket->id)->first();
-        
-        $ticket->update([
-            'status' => $request->status,
-        ]);
-
-        $get->update([
-            'description' => $request->description,
-        ]);
-
         $email = Ticket::with('user')->findOrFail($id);
+        // dd($email->user->email);
 
         Mail::send('emails.get', [
             'name' => $email->user->name,
@@ -149,6 +123,6 @@ class TicketController extends Controller
             $message->to($email->user->email)->subject('Ticket Telah Diperbarui');
         });
 
-        return redirect()->route('admin.tickets.get')->with('success', 'Ticket has been updated!');
+        return redirect()->route('admin.tickets')->with('success', 'Ticket has been updated!');
     }
 }

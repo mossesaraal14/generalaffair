@@ -39,24 +39,28 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <form action="{{ route('admin.tickets.get.store') }}" method="post">
+            <form action="{{ route('admin.tickets.get.store', $ticket->id) }}" method="post">
                 @csrf
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                         <label for="ticket_id">Ticket ID</label>
                         <select class="form-control select2bs4" style="width: 100%;" name="ticket_id">
-                          <option selected="selected">Select Ticket</option>
-                          @foreach ($ticket_id as $ticket)
-                          <option value="{{ $ticket->id }}">{{ $ticket->ticket_id }} | {{ $ticket->user->name }} | {{ $ticket->description }}</option>
-                          @endforeach
+                          {{-- <option selected="selected">Select Ticket</option> --}}
+                          {{-- @foreach ($ticket_id as $ticket) --}}
+                          <option value="{{ $ticket->id }}">{{ $ticket->ticket_id }}</option>
+                          {{-- @endforeach --}}
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="ticket_id">Status</label>
                         <select class="form-control select2bs4" style="width: 100%;" name="status">
-                          <option value="progress" selected="selected">progress</option>
-                          <option value="closed">closed</option>
+                          <option value="progress" {{ $ticket->status == 'progress' ? 'selected' : '' }}>
+                              Progress
+                          </option>
+                          <option value="closed" {{ $ticket->status == 'closed' ? 'selected' : '' }}>
+                              Closed
+                          </option>
                         </select>
                     </div>
                     @error('ticket_id')
@@ -67,7 +71,7 @@
                     <!-- /.form-group -->
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea class="form-control" rows="3" placeholder="Enter ..." name="description"></textarea>
+                        <textarea class="form-control" rows="3" placeholder="Enter ..." name="description">{{ $ticket->getTicket->description ?? '' }}</textarea>
                     </div>
                     @error('description')
                         <div class="invalid-feedback">

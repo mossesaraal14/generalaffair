@@ -65,7 +65,7 @@ class UserTicketController extends Controller
             'status' => 'Open',
             'tanggal' => Carbon::now()->format('d/m/y'),
         ], function($message) use ($email) {
-            $message->to($email)->subject('Ticket Berhasil Dibuat');
+            $message->to([$email, 'mosses@berkahrositamandiri.com'])->subject('Ticket Berhasil Dibuat');
         });
 
         return redirect()->route('user.tickets')->with('success', 'Ticket has been created successfully!');

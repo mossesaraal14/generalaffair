@@ -66,8 +66,8 @@ Route::middleware('auth')->group(function () {
     
             // get ticket
             Route::get('/admin/getticket', [TicketController::class, 'getTicketIndex'])->name('admin.tickets.get');
-            Route::get('/admin/getticket/create', [TicketController::class, 'getTicketCreate'])->name('admin.tickets.get.create');
-            Route::post('/admin/getticket/store', [TicketController::class, 'getTicketStore'])->name('admin.tickets.get.store');
+            Route::get('/admin/getticket/create/{id}', [TicketController::class, 'getTicketCreate'])->name('admin.tickets.get.create');
+            Route::post('/admin/getticket/store/{id}', [TicketController::class, 'getTicketStore'])->name('admin.tickets.get.store');
             Route::get('/admin/getticket/edit/{id}', [TicketController::class, 'getTicketEdit'])->name('admin.tickets.get.edit');
             Route::post('/admin/getticket/update/{id}', [TicketController::class, 'getTicketUpdate'])->name('admin.tickets.get.update');
         });
@@ -82,7 +82,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/user/tickets/delete/{id}', [UserTicketController::class, 'ticketDestroy'])->name('user.tickets.destroy');
         });
     
-        // anyone who've logged on
+        // anyone who's logged on
         Route::middleware('auth')->group(function() {
             // profile
             Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

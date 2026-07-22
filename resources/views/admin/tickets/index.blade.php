@@ -54,6 +54,7 @@
                     <th>Created At</th>
                     <th>Status</th>
                     <th>Action</th>
+                    <th>Get</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -83,6 +84,9 @@
                         <i class="fas fa-trash"></i>
                       </a>
                     </td>
+                    <td class="text-center">
+                      <a href="{{ route('admin.tickets.get.create', $ticket->id) }}" class="btn btn-success" style="padding: 2px 6px; font-size: 12px;"><i class="fas fa-user-check"></i></a>
+                    </td>
                   </tr>
                   @endforeach
                   </tbody>
@@ -95,6 +99,7 @@
                     <th>Created At</th>
                     <th>Status</th>
                     <th>Action</th>
+                    <th>Get</th>
                   </tr>
                   </tfoot>
                 </table>

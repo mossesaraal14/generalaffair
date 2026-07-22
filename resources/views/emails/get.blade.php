@@ -46,7 +46,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td><strong>Description</strong></td>
+                                    <td><strong>Issue</strong></td>
                                     <td>{{ ucfirst($description) }}</td>
                                 </tr>
 
@@ -61,7 +61,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td><strong>Tanggal</strong></td>
+                                    <td><strong>Date</strong></td>
                                     <td>{{ $tanggal }}</td>
                                 </tr>
 
