@@ -48,7 +48,7 @@
                         <select class="form-control select2bs4" style="width: 100%;" name="ticket_id">
                           <option selected="selected">Select Ticket</option>
                           @foreach ($ticket_id as $ticket)
-                          <option value="{{ $ticket->id }}">{{ $ticket->ticket_id }}</option>
+                          <option value="{{ $ticket->id }}">{{ $ticket->ticket_id }} | {{ $ticket->user->name }} | {{ $ticket->description }}</option>
                           @endforeach
                         </select>
                     </div>

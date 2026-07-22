@@ -22,7 +22,15 @@ class UserTicketController extends Controller
     public function ticketCreate() {
         $month = date('m');
         $year = date('Y');
-        $urutan = (Ticket::max('id') ?? 0) + 1;
+        $lastTicket = Ticket::whereYear('created_at', $year)->whereMonth('created_at', $month)->orderByDesc('id')->first();
+
+        if ($lastTicket) {
+            $parts = explode('/', $lastTicket->ticket_id);
+            $urutan = (int) end($parts) + 1;
+        } else {
+            $urutan = 1;
+        }
+        
         $department = User::where('id', Auth::user()->id)->first()->department;
 
         return view('user.tickets.create', compact('month', 'year', 'urutan', 'department'));
