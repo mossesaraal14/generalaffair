@@ -13,7 +13,7 @@ class UserTicketController extends Controller
 {
     public function index() {
         $id = Auth::user()->id;
-        $data = Ticket::where('user_id', $id)->get();
+        $data = Ticket::where('user_id', $id)->latest('created_at')->get();
         // dd($data);
 
         return view('user.tickets.index', compact('data'));

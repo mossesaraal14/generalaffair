@@ -15,7 +15,7 @@ class TicketController extends Controller
     // admin
     // tickets
     public function index() {
-        $data = Ticket::all();
+        $data = Ticket::latest('created_at')->get();
 
         return view('admin.tickets.index', compact('data'));
     }
@@ -110,11 +110,11 @@ class TicketController extends Controller
         ]);
 
         $email = Ticket::with('user')->findOrFail($id);
-        // dd($email->user->email);
+        // dd($email->ticket_id);
 
         Mail::send('emails.get', [
             'name' => $email->user->name,
-            'ticket_id' => $request->ticket_id,
+            'ticket_id' => $email->ticket_id,
             'description' => $ticket->description,
             'department' => $email->user->department,
             'status' => $request->status,
