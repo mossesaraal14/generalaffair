@@ -78,11 +78,8 @@
                     </td>
                     <td>{{ $ticket->getTicket ? ucfirst($ticket->getTicket->description) : '-' }}</td>
                     <td class="text-center">
-                      {{-- <a href="#" class="btn btn-warning btn-sm">
-                        <i class="fas fa-edit"></i>
-                      </a> --}}
-                      <a href="{{ route('user.tickets.destroy', $ticket->id) }}" class="btn btn-danger btn-sm" onclick="return confirm('are you sure to delete this item?')" style="padding: 2px 6px; font-size: 12px;">
-                        <i class="fas fa-trash"></i>
+                      <a href="{{ route('user.tickets.show', $ticket->id) }}" class="btn btn-info btn-sm btn-show">
+                        <i class="fas fa-info"></i>
                       </a>
                     </td>
                   </tr>
@@ -136,4 +133,73 @@
     });
   });
 </script>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Details</h5>
+        <button type="button" class="close btn-close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="content">
+            <table class="table table-sm table-borderless mb-0">
+                <tr>
+                    <th width="140">Ticket ID</th>
+                    <td id="ticket_id"></td>
+                </tr>
+                <tr>
+                    <th>User</th>
+                    <td id="user_name"></td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td id="user_email"></td>
+                </tr>
+                <tr>
+                    <th>Department</th>
+                    <td id="department"></td>
+                </tr>
+                <tr>
+                    <th>Category</th>
+                    <td id="category"></td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>
+                        @if ($ticket->status == 'open')
+                            <span class="badge bg-primary" id="status">Open</span>
+                        @elseif ($ticket->status == 'progress')
+                            <span class="badge bg-warning" id="status">In Progress</span>
+                        @elseif ($ticket->status == 'closed')
+                            <span class="badge bg-success" id="status">Closed</span>
+                        @else
+                            <span class="badge bg-secondary">{{ ucfirst($ticket->status) }}</span>
+                        @endif
+                    </td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td id="description"></td>
+                </tr>
+                <tr>
+                    <th>Created At</th>
+                    <td id="created_at"></td>
+                </tr>
+                <tr>
+                    <th>Updated At</th>
+                    <td id="updated_at"></td>
+                </tr>
+            </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection

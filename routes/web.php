@@ -73,6 +73,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/user/tickets/create', [UserTicketController::class, 'ticketCreate'])->name('user.tickets.create');
             Route::post('/user/tickets/store', [UserTicketController::class, 'ticketStore'])->name('user.tickets.store');
             Route::get('/user/tickets/delete/{id}', [UserTicketController::class, 'ticketDestroy'])->name('user.tickets.destroy');
+            Route::get('/user/tickets/show/{id}', [UserTicketController::class, 'ticketShow'])->name('user.tickets.show');
         });
 
         // anyone who's logged on

@@ -56,6 +56,9 @@
 
   <!-- Dropzone -->
   <link rel="stylesheet" href="{{ asset('plugins/dropzone/min/dropzone.min.css') }}">
+
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

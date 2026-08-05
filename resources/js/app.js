@@ -16,7 +16,7 @@ $(document).on('click', '.btn-show', async function (e) {
 
         const response = await axios.get($(this).attr('href'));
 
-        // console.log(response.data);
+        console.log(response.data);
 
         $('#ticket_id').html(response.data.ticket_id);
         $('#user_name').html(response.data.user.name);

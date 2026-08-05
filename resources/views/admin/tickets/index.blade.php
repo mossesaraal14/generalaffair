@@ -49,12 +49,9 @@
                   <tr>
                     <th>Ticket ID</th>
                     <th>User</th>
-                    <th>Department</th>
                     <th>Description</th>
-                    <th>Created At</th>
                     <th>Status</th>
                     <th>Action</th>
-                    <th>Get</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -62,9 +59,7 @@
                   <tr>
                     <td>{{ $ticket->ticket_id }}</td>
                     <td>{{ User::findOrFail($ticket->user_id)->name }}</td>
-                    <td>{{ $ticket->department }}</td>
                     <td>{{ ucfirst($ticket->description) }}</td>
-                    <td>{{ ucfirst($ticket->created_at) }}</td>
                     <td>
                         @if ($ticket->status == 'open')
                             <span class="badge bg-primary">Open</span>
@@ -88,9 +83,6 @@
                         <i class="fas fa-info"></i>
                       </a>
                     </td>
-                    <td class="text-center">
-                      <a href="{{ route('admin.tickets.get.create', $ticket->id) }}" class="btn btn-success" style="padding: 2px 6px; font-size: 12px;"><i class="fas fa-user-check"></i></a>
-                    </td>
                   </tr>
                   @endforeach
                   </tbody>
@@ -98,12 +90,9 @@
                   <tr>
                     <th>Ticket ID</th>
                     <th>User</th>
-                    <th>Department</th>
                     <th>Description</th>
-                    <th>Created At</th>
                     <th>Status</th>
                     <th>Action</th>
-                    <th>Get</th>
                   </tr>
                   </tfoot>
                 </table>
@@ -207,6 +196,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-close" data-dismiss="modal">Close</button>
+        <a href="{{ route('admin.tickets.get.create', $ticket->id) }}" class="btn btn-warning"><i class="fas fa-user-check"></i> Get</a>
       </div>
     </div>
   </div>
