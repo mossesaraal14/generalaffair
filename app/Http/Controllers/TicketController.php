@@ -77,6 +77,23 @@ class TicketController extends Controller
         return redirect()->route('admin.tickets')->with('success', 'Ticket has been deleted successfully!');
     }
 
+    public function ticketShow($id) {
+        $ticket = Ticket::with([
+            'user',
+        ])->findOrFail($id);
+
+        return response()->json([
+            'ticket_id' => $ticket->ticket_id,
+            'department' => $ticket->department,
+            'category' => $ticket->category,
+            'status' => $ticket->status,
+            'description' => $ticket->description,
+            'created_at' => $ticket->created_at->format('d-m-Y H:i'),
+            'updated_at' => $ticket->updated_at->format('d-m-Y H:i'),
+            'user' => $ticket->user,
+        ]);
+    }
+
     // get ticket
     public function getTicketIndex() {
         $data = GetTicket::all();

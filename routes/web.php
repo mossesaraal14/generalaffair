@@ -33,17 +33,9 @@ Route::middleware('auth')->group(function () {
         Route::middleware(['auth', 'role:admin'])->group(function () {
             Route::get('register', [RegisteredUserController::class, 'create'])
             ->name('register');
-    
+
             Route::post('register', [RegisteredUserController::class, 'store']);
 
-            // Route::get('/test-email', function () {
-            //     Mail::send('emails.ticket', [], function($message) {
-            //         $message->to('infotekno@berkahrositamandiri.com')->subject('Ticket Berhasil Dibuat');
-            //     });
-
-            //     return 'Email berhasil dikirim!';
-            // });
-    
             // master atk
             Route::get('/admin', [AtkController::class, 'dashboard'])->name('admin.dashboard');
             Route::get('/admin/atk', [AtkController::class, 'atkIndex'])->name('admin.atk');
@@ -52,18 +44,19 @@ Route::middleware('auth')->group(function () {
             Route::get('/admin/atk/edit/{id}', [AtkController::class, 'atkEdit'])->name('admin.atk.edit');
             Route::put('/admin/atk/update/{id}', [AtkController::class, 'atkUpdate'])->name('admin.atk.update');
             Route::get('/admin/atk/delete/{id}', [AtkController::class, 'atkDestroy'])->name('admin.atk.destroy');
-    
+
             // transaksi atk
             Route::get('/admin/atk/transaksi', [AtkController::class, 'atkTransaksi'])->name('admin.atk.transaksi');
             Route::get('/admin/atk/transaksi/create', [AtkController::class, 'atkTransaksiCreate'])->name('admin.atk.transaksi.create');
             Route::post('/admin/atk/transaksi/store', [AtkController::class, 'atkTransaksiStore'])->name('admin.atk.transaksi.store');
-    
+
             // tickets
             Route::get('/admin/tickets/', [TicketController::class, 'index'])->name('admin.tickets');
             Route::get('/admin/tickets/create', [TicketController::class, 'ticketCreate'])->name('admin.tickets.create');
             Route::post('/admin/tickets/store', [TicketController::class, 'ticketStore'])->name('admin.tickets.store');
             Route::get('/admin/tickets/delete/{id}', [TicketController::class, 'ticketDestroy'])->name('admin.tickets.destroy');
-    
+            Route::get('/admin/tickets/show/{id}', [TicketController::class, 'ticketShow'])->name('admin.tickets.show');
+
             // get ticket
             Route::get('/admin/getticket', [TicketController::class, 'getTicketIndex'])->name('admin.tickets.get');
             Route::get('/admin/getticket/create/{id}', [TicketController::class, 'getTicketCreate'])->name('admin.tickets.get.create');
@@ -71,7 +64,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/admin/getticket/edit/{id}', [TicketController::class, 'getTicketEdit'])->name('admin.tickets.get.edit');
             Route::post('/admin/getticket/update/{id}', [TicketController::class, 'getTicketUpdate'])->name('admin.tickets.get.update');
         });
-    
+
         // user
         Route::middleware(['auth', 'role:user'])->group(function () {
             // tickets
@@ -81,7 +74,7 @@ Route::middleware('auth')->group(function () {
             Route::post('/user/tickets/store', [UserTicketController::class, 'ticketStore'])->name('user.tickets.store');
             Route::get('/user/tickets/delete/{id}', [UserTicketController::class, 'ticketDestroy'])->name('user.tickets.destroy');
         });
-    
+
         // anyone who's logged on
         Route::middleware('auth')->group(function() {
             // profile
