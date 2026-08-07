@@ -56,6 +56,7 @@ Route::middleware('auth')->group(function () {
             Route::post('/admin/tickets/store', [TicketController::class, 'ticketStore'])->name('admin.tickets.store');
             Route::get('/admin/tickets/delete/{id}', [TicketController::class, 'ticketDestroy'])->name('admin.tickets.destroy');
             Route::get('/admin/tickets/show/{id}', [TicketController::class, 'ticketShow'])->name('admin.tickets.show');
+            Route::get('/admin/tickets/pdf/{id}', [TicketController::class, 'pdf'])->name('admin.tickets.pdf');
 
             // get ticket
             Route::get('/admin/getticket', [TicketController::class, 'getTicketIndex'])->name('admin.tickets.get');

@@ -25,6 +25,7 @@ $(document).on('click', '.btn-show', async function (e) {
         $('#category').html(response.data.category);
         $('#status').html(response.data.status);
         $('#description').html(response.data.description);
+        $('#note').html(response.data.note);
         $('#created_at').html(response.data.created_at);
         $('#updated_at').html(response.data.updated_at);
 

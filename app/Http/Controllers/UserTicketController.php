@@ -80,7 +80,7 @@ class UserTicketController extends Controller
 
     public function ticketShow($id) {
         $ticket = Ticket::with([
-            'user',
+            'user', 'getTicket'
         ])->findOrFail($id);
 
         return response()->json([
@@ -92,6 +92,7 @@ class UserTicketController extends Controller
             'created_at' => $ticket->created_at->format('d-m-Y H:i'),
             'updated_at' => $ticket->updated_at->format('d-m-Y H:i'),
             'user' => $ticket->user,
+            'note' => $ticket->getTicket ? ucfirst($ticket->getTicket->description) : '-',
         ]);
     }
 }

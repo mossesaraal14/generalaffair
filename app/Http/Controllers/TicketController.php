@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\GetTicket;
 use App\Models\Ticket;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -92,6 +93,15 @@ class TicketController extends Controller
             'updated_at' => $ticket->updated_at->format('d-m-Y H:i'),
             'user' => $ticket->user,
         ]);
+    }
+
+    public function pdf($id) {
+        $ticket = Ticket::with('user')->findOrFail($id);
+        $pdf = Pdf::loadView('pdf.ticket', compact('ticket'));
+
+        $filename = str_replace('/', '-', $ticket->ticket_id);
+
+        return $pdf->stream($filename);
     }
 
     // get ticket

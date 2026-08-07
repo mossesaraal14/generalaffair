@@ -186,6 +186,10 @@
                     <td id="description"></td>
                 </tr>
                 <tr>
+                    <th>Note</th>
+                    <td id="note"></td>
+                </tr>
+                <tr>
                     <th>Created At</th>
                     <td id="created_at"></td>
                 </tr>
